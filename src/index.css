@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Yaldevi:wght@200..700&display=swap');
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  --bg: #f9fafb;
+  --text: #121212;
+
+  color: var(--text);
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@theme {
+  --color-primary: #afc97e;
+  --color-secondary: #d4e6b5;
+  --color-tertiary: #ffdf64;
+  --font-logo: 'Princess Sofia', cursive;
+  --font-logo_secondary: Yaldevi, sans-serif;
+}
