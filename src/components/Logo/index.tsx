@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 type LogoProps = {
-  onClickLogo: () => void;
+  onClickLogo?: () => void;
   isOnFooter?: boolean;
 };
 
