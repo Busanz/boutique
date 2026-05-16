@@ -19,6 +19,8 @@ body {
   --color-primary: #afc97e;
   --color-secondary: #d4e6b5;
   --color-tertiary: #ffdf64;
+  --color-bg: #f9fafb;
+  --color-text: #121212;
   --font-logo: 'Princess Sofia', cursive;
   --font-logo_secondary: Yaldevi, sans-serif;
 }

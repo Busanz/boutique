@@ -1,6 +1,13 @@
+import { useState } from 'react';
 import type { Product } from '../../utils/types';
+import ModalProduct from '../ModalProduct';
+import AddToCartButton from '../AddToCartButton';
 
 const ProductCard = ({ productCard }: Product) => {
+  const [isOpenModel, setIsOpenModel] = useState<boolean>(false);
+  const handleClick = () => {
+    setIsOpenModel(!isOpenModel);
+  };
   return (
     <article
       key={productCard.id}
@@ -17,7 +24,10 @@ const ProductCard = ({ productCard }: Product) => {
       <div className="flex flex-col gap-4 justify-start mt-auto">
         <p className="text-primary text-xl">${productCard.price}</p>
         <div className="flex gap-4 items-center mt-2">
-          <span className="p-1.5 bg-tertiary hover:bg-secondary">
+          <span
+            onClick={handleClick}
+            className="p-1.5 bg-tertiary hover:bg-secondary"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -41,11 +51,16 @@ const ProductCard = ({ productCard }: Product) => {
             </svg>
           </span>
 
-          <button className="px-5 py-1.5 font-light bg-tertiary hover:bg-secondary">
-            Add to cart
-          </button>
+          <AddToCartButton />
         </div>
       </div>
+      {isOpenModel && (
+        <ModalProduct
+          isPressedModal={isOpenModel}
+          setIsOpenModel={handleClick}
+          product={productCard}
+        />
+      )}
     </article>
   );
 };

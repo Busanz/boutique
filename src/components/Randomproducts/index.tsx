@@ -9,7 +9,7 @@ type APIDataType = {
 const Randomproducts = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  const generateRandomNumbers = () => {
+  const generateRandomNumbers = (): number[] => {
     const randomNumbers: number[] = [];
     while (randomNumbers.length < 12) {
       const randomNumber: number = Math.floor(Math.random() * 194) + 1;
