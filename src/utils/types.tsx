@@ -16,6 +16,7 @@ export type ProductType = {
   images: string[];
   availabilityStatus: string;
   reviews: Review[];
+  thumbnail: string;
 };
 
 export type Product = Pick<

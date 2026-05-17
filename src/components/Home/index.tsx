@@ -15,7 +15,8 @@ const Home = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const { cartProductCount, addToCart } = useCart();
+  const { cartProducts, cartProductCount, addToCart, removeFromCart } =
+    useCart();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -45,6 +46,8 @@ const Home = () => {
       <Navbar
         onClickNavbar={handleClickLogo}
         productCountNavbar={cartProductCount}
+        cartProductsNavbar={cartProducts}
+        removeFromCartNavbar={removeFromCart}
       />
       <section
         className="flex w-fit justify-center p-1 mx-auto mb-3 cursor-pointer"

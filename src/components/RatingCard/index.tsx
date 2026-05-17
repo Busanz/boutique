@@ -14,7 +14,7 @@ const RatingCard = ({ reviewRating }: RatingProps) => {
         </h3>
       </div>
       {reviewRating.map((review, index) => (
-        <div key={index} className="border-b border-secondary pb-3">
+        <div key={index} className="border-b border-secondary py-3">
           <div className="flex items-center gap-2 mb-1">
             <div className="flex mb-2">
               {[...Array(5)].map((_, i) => (

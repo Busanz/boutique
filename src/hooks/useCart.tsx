@@ -34,8 +34,17 @@ export const useCart = () => {
     }
   };
 
+  const removeFromCart = (productId: number) => {
+    const updateCart = cartProducts.filter(
+      (product) => product.id !== productId,
+    );
+    localStorage.setItem('productInCart', JSON.stringify(updateCart));
+    setCartProducts(updateCart);
+    setCartProductCount(updateCart.length);
+  };
+
   useEffect(() => {
     loadCart();
   }, []);
-  return { cartProducts, cartProductCount, addToCart };
+  return { cartProducts, cartProductCount, addToCart, removeFromCart };
 };

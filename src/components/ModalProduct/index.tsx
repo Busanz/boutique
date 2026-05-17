@@ -6,7 +6,6 @@ import {
   DialogTitle,
 } from '@headlessui/react';
 import { TfiArrowLeft, TfiArrowRight } from 'react-icons/tfi';
-import { GoDot } from 'react-icons/go';
 
 import type { ProductType } from '../../utils/types';
 import AddToCartButton from '../AddToCartButton';
@@ -69,24 +68,41 @@ const ModalProduct = ({
                 {isImages && (
                   <>
                     <button
-                      className={`absolute w-fit h-fit rounded-full z-20  p-2 bg-secondary hidden group-hover:block top-[50%] translate-x-0 -translate-y-1/2 right-4 text-2xl cursor-pointer`}
+                      className={`absolute w-fit h-fit rounded-full z-20  p-2 bg-secondary opacity-100 md:opacity-0 transition-opacity duration-500 group-hover:opacity-100 top-[50%] translate-x-0 -translate-y-1/2 right-4 text-2xl cursor-pointer`}
                     >
                       <TfiArrowRight size={20} onClick={nextImage} />
                     </button>
                     <button
-                      className={`absolute w-fit h-fit rounded-full z-20 p-2 bg-secondary hidden  group-hover:block top-[50%] translate-x-0 -translate-y-1/2 left-4 text-2xl cursor-pointer`}
+                      className={`absolute w-fit h-fit rounded-full z-20 p-2 bg-secondary opacity-100 md:opacity-0 transition-opacity duration-500 group-hover:opacity-100 top-[50%] translate-x-0 -translate-y-1/2 left-4 text-2xl cursor-pointer`}
                     >
                       <TfiArrowLeft size={20} onClick={previousImage} />
                     </button>
 
-                    <div className="flex justify-center gap-2 mt-3">
+                    <div className="flex justify-center gap-3 mt-3">
                       {product.images.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => setCurrentIndex(index)}
                           className={`text-2xl cursor-pointer transition-colors ${index === currentIndex ? 'text-secondary' : 'text-gray-600'}`}
                         >
-                          <GoDot size={21} />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill={
+                              index === currentIndex ? '#afc97e' : '#d4e6b5'
+                            }
+                            stroke={
+                              index === currentIndex ? '#afc97e' : '#d4e6b5'
+                            }
+                            strokeWidth={index === currentIndex ? 1.5 : 0}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="lucide lucide-circle-small-icon lucide-circle-small"
+                          >
+                            <circle cx="12" cy="12" r="6" />
+                          </svg>
                         </button>
                       ))}
                     </div>
