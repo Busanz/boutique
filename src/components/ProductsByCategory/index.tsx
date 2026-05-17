@@ -4,9 +4,13 @@ import ProductCard from '../ProductCard';
 
 type CategoryProps = {
   selectedCategory: string | null;
+  addtoCartCategory: (product: ProductType) => void;
 };
 
-const ProductByCategoy = ({ selectedCategory = 'beauty' }: CategoryProps) => {
+const ProductByCategoy = ({
+  selectedCategory = 'beauty',
+  addtoCartCategory,
+}: CategoryProps) => {
   const [productsByCategory, setProductByCategory] = useState<ProductType[]>(
     [],
   );
@@ -29,7 +33,11 @@ const ProductByCategoy = ({ selectedCategory = 'beauty' }: CategoryProps) => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center mx-auto gap-5">
       {productsByCategory.map((product) => (
-        <ProductCard key={product.id} productCard={product} />
+        <ProductCard
+          key={product.id}
+          productCard={product}
+          addtoCartProductCard={addtoCartCategory}
+        />
       ))}
     </section>
   );

@@ -27,9 +27,9 @@ const RatingCard = ({ reviewRating }: RatingProps) => {
                 </span>
               ))}
             </div>
-            <span className="text-xs text-gray-500">{review.reviewerName}</span>
+            <span className="text-xs text-text/50">{review.reviewerName}</span>
           </div>
-          <p className="text-sm text-gray-600">{review.comment}</p>
+          <p className="text-sm text-text">{review.comment}</p>
         </div>
       ))}
     </div>

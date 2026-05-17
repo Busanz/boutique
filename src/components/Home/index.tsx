@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ProductByCategory from '../ProductsByCategory';
 import RandomProducts from '../Randomproducts';
 import Navbar from '../Navbar';
+import { useCart } from '../../hooks/useCart';
 
 type CategoryType = {
   slug: string;
@@ -13,6 +14,8 @@ const Home = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const { cartProductCount, addToCart } = useCart();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -39,7 +42,10 @@ const Home = () => {
   };
   return (
     <main className="relative flex flex-col justify-center w-full px-3 sm:px-12 md:px-14lg:px-24 py-2">
-      <Navbar onClickNavbar={handleClickLogo} />
+      <Navbar
+        onClickNavbar={handleClickLogo}
+        productCountNavbar={cartProductCount}
+      />
       <section
         className="flex w-fit justify-center p-1 mx-auto mb-3 cursor-pointer"
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
@@ -75,7 +81,7 @@ const Home = () => {
           {categories.map((item) => (
             <p
               key={item.slug}
-              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer bg-[#f9fafb] hover:bg-gray-100 transition-colors"
+              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer bg-bg hover:bg-gray-100 transition-colors"
               onClick={() => handleCategorySelect(item.name)}
             >
               {item.name}
@@ -85,9 +91,12 @@ const Home = () => {
       )}
 
       {selectedCategory && (
-        <ProductByCategory selectedCategory={selectedCategory} />
+        <ProductByCategory
+          selectedCategory={selectedCategory}
+          addtoCartCategory={addToCart}
+        />
       )}
-      {!selectedCategory && <RandomProducts />}
+      {!selectedCategory && <RandomProducts addtoCartRandom={addToCart} />}
     </main>
   );
 };

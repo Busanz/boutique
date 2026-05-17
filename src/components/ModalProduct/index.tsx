@@ -16,12 +16,14 @@ type ModalProductProps = {
   isPressedModal: boolean;
   setIsOpenModel: (value: boolean) => void;
   product: ProductType;
+  addtoCartButtonModal: (product: ProductType) => void;
 };
 
 const ModalProduct = ({
   isPressedModal,
   setIsOpenModel,
   product,
+  addtoCartButtonModal,
 }: ModalProductProps) => {
   const IMAGE_ARRAY_LEN: number = product.images.length - 1;
   const isImages: boolean = IMAGE_ARRAY_LEN !== 0;
@@ -94,7 +96,10 @@ const ModalProduct = ({
               <p className="text-sm md:text-lg font-extralight text-primary leading-relaxed mb-3">
                 {product.availabilityStatus}
               </p>
-              <AddToCartButton />
+              <AddToCartButton
+                productAdd={product}
+                addtoCartButton={addtoCartButtonModal}
+              />
               <p className="text-sm md:text-lg font-light text-text leading-relaxed my-3 text-pretty">
                 {product.description}
               </p>

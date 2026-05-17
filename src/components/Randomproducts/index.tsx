@@ -6,7 +6,11 @@ type APIDataType = {
   products: ProductType[];
 };
 
-const Randomproducts = () => {
+type RandomProps = {
+  addtoCartRandom: (product: ProductType) => void;
+};
+
+const Randomproducts = ({ addtoCartRandom }: RandomProps) => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
   const generateRandomNumbers = (): number[] => {
@@ -51,7 +55,11 @@ const Randomproducts = () => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto gap-5">
       {products.map((product: ProductType) => (
-        <ProductCard key={product.id} productCard={product} />
+        <ProductCard
+          key={product.id}
+          productCard={product}
+          addtoCartProductCard={addtoCartRandom}
+        />
       ))}
     </section>
   );

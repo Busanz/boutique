@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import type { Product } from '../../utils/types';
+import type { ProductType } from '../../utils/types';
 import ModalProduct from '../ModalProduct';
 import AddToCartButton from '../AddToCartButton';
 
-const ProductCard = ({ productCard }: Product) => {
+type ProductCardProps = {
+  productCard: ProductType;
+  addtoCartProductCard: (product: ProductType) => void;
+};
+
+const ProductCard = ({
+  productCard,
+  addtoCartProductCard,
+}: ProductCardProps) => {
   const [isOpenModel, setIsOpenModel] = useState<boolean>(false);
   const handleClick = () => {
     setIsOpenModel(!isOpenModel);
@@ -11,7 +19,7 @@ const ProductCard = ({ productCard }: Product) => {
   return (
     <article
       key={productCard.id}
-      className="flex flex-col w-fit max-w-96 h-full bg-[#ffdf6411] border border-secondary p-4"
+      className="flex flex-col w-fit max-w-96 h-full bg-tertiary/10 border border-secondary p-4"
     >
       <img
         src={productCard.images[0] || 'fallback_productImage.png'}
@@ -51,7 +59,10 @@ const ProductCard = ({ productCard }: Product) => {
             </svg>
           </span>
 
-          <AddToCartButton />
+          <AddToCartButton
+            productAdd={productCard}
+            addtoCartButton={addtoCartProductCard}
+          />
         </div>
       </div>
       {isOpenModel && (
@@ -59,6 +70,7 @@ const ProductCard = ({ productCard }: Product) => {
           isPressedModal={isOpenModel}
           setIsOpenModel={handleClick}
           product={productCard}
+          addtoCartButtonModal={addtoCartProductCard}
         />
       )}
     </article>
