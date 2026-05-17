@@ -6,12 +6,14 @@ type NavIconsType = {
   productCountNavIcons: number;
   cartProductsNavIcons: ProductType[];
   removeFromCartNavIcons: (id: number) => void;
+  onSetThemeNavIcons: (theme: boolean) => void;
 };
 
 const NavIcons = ({
   productCountNavIcons,
   cartProductsNavIcons,
   removeFromCartNavIcons,
+  onSetThemeNavIcons,
 }: NavIconsType) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -36,7 +38,7 @@ const NavIcons = ({
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-shopping-cart-icon lucide-shopping-cart p-2 hover:stroke-primary cursor-pointer"
+          className="lucide lucide-shopping-cart-icon lucide-shopping-cart p-2 stroke-text dark:stroke-bg hover:stroke-primary cursor-pointer"
         >
           <circle cx="8" cy="21" r="1" />
           <circle cx="19" cy="21" r="1" />
@@ -57,7 +59,8 @@ const NavIcons = ({
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-moon-icon lucide-moon p-2"
+          className="lucide lucide-moon-icon lucide-moon p-2 dark:fill-bg stroke-text dark:stroke-bg hover:stroke-primary cursor-pointer"
+          onClick={() => onSetThemeNavIcons(true)}
         >
           <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
         </svg>

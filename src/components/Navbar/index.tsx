@@ -7,6 +7,7 @@ type NavbarProps = {
   onClickNavbar: () => void;
   cartProductsNavbar: ProductType[];
   removeFromCartNavbar: (id: number) => void;
+  onSetThemeNavbar: (theme: boolean) => void;
 };
 
 const Navbar = ({
@@ -14,6 +15,7 @@ const Navbar = ({
   productCountNavbar,
   cartProductsNavbar,
   removeFromCartNavbar,
+  onSetThemeNavbar,
 }: NavbarProps) => {
   return (
     <nav className="flex w-full py-2 items-center justify-between">
@@ -22,6 +24,7 @@ const Navbar = ({
         productCountNavIcons={productCountNavbar}
         cartProductsNavIcons={cartProductsNavbar}
         removeFromCartNavIcons={removeFromCartNavbar}
+        onSetThemeNavIcons={onSetThemeNavbar}
       />
     </nav>
   );

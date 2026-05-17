@@ -22,7 +22,7 @@ const AddToCartButton = ({ productAdd, addtoCartButton }: AddToCartProps) => {
     <>
       <button
         onClick={() => setIsAlertOpen(true)}
-        className="px-5 py-1.5 font-light bg-tertiary hover:bg-secondary"
+        className="px-5 py-1.5 font-light text-bg dark:text-text bg-tertiary hover:bg-secondary"
       >
         Add to cart
       </button>

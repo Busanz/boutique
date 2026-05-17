@@ -14,6 +14,11 @@ const Home = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState<boolean>(false);
+
+  const handleTheme = () => {
+    setIsDark(!isDark);
+  };
 
   const { cartProducts, cartProductCount, addToCart, removeFromCart } =
     useCart();
@@ -42,12 +47,16 @@ const Home = () => {
     setSelectedCategory(null);
   };
   return (
-    <main className="relative flex flex-col justify-center w-full px-3 sm:px-12 md:px-14lg:px-24 py-2">
+    <main
+      className={`relative flex flex-col justify-center w-full px-3 sm:px-12 md:px-14 
+        lg:px-24 py-2 bg-bg dark:bg-text text-text dark:text-bg ${isDark ? 'dark' : ''}`}
+    >
       <Navbar
         onClickNavbar={handleClickLogo}
         productCountNavbar={cartProductCount}
         cartProductsNavbar={cartProducts}
         removeFromCartNavbar={removeFromCart}
+        onSetThemeNavbar={handleTheme}
       />
       <section
         className="flex w-fit justify-center p-1 mx-auto mb-3 cursor-pointer"
@@ -80,11 +89,11 @@ const Home = () => {
       </section>
 
       {isDrawerOpen && (
-        <div className="absolute flex flex-wrap w-full max-w-6xl justify-center pt-2 pb-4 px-4 gap-4 top-32 left-1/2 -translate-x-1/2 bg-tertiary">
+        <div className="absolute flex flex-wrap w-full max-w-6xl justify-center pt-2 pb-4 px-4 gap-4 top-32 left-1/2 -translate-x-1/2 bg-tertiary ">
           {categories.map((item) => (
             <p
               key={item.slug}
-              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer bg-bg hover:bg-gray-100 transition-colors"
+              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer text-bg dark:text-text bg-bg hover:bg-gray-100 transition-colors"
               onClick={() => handleCategorySelect(item.name)}
             >
               {item.name}
