@@ -5,6 +5,7 @@ type CartDisplayProps = {
   onCloseCart: () => void;
   productsInCart: ProductType[];
   removeFromCartDisplay: (id: number) => void;
+  isDarkCartDisplay: boolean;
 };
 
 const CardDisplay = ({
@@ -12,6 +13,7 @@ const CardDisplay = ({
   onCloseCart,
   productsInCart,
   removeFromCartDisplay,
+  isDarkCartDisplay,
 }: CartDisplayProps) => {
   if (!isOpenCart) return null;
 
@@ -30,17 +32,17 @@ const CardDisplay = ({
 
   return (
     <div
-      className="fixed inset-y-0 right-0 w-full gap-3 p-2 md:p-3 bg-gray-500/90"
+      className={`fixed inset-y-0 right-0 w-full gap-3 p-2 md:p-3 bg-gray-500/90 ${isDarkCartDisplay ? 'dark' : ''} z-50`}
       onClick={onCloseCart}
     >
       <div className="relative flex flex-col w-full h-full items-end">
         <div
-          className="bg-bg flex flex-col h-full w-full sm:max-w-lg gap-2 border-b border-secondary overflow-y-auto"
+          className="bg-bg dark:bg-text flex flex-col h-full w-full sm:max-w-lg gap-2 border-b border-secondary overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex w-full justify-between items-center pr-3 mb-3 bg-secondary">
             <h2 className="font-normal text-base sm:text-lg text-text px-6 py-4">
-              Cart{' '}
+              Cart
               <span className="text-sm">
                 ({productsInCart.length} products)
               </span>
@@ -55,7 +57,7 @@ const CardDisplay = ({
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-x-icon lucide-x cursor-pointer p-2 transition duration-300 hover:rotate-90"
+              className="lucide lucide-x-icon lucide-x cursor-pointer p-2 transition duration-300 hover:rotate-90 text-text"
               onClick={onCloseCart}
             >
               <path d="M18 6 6 18" />
@@ -64,12 +66,15 @@ const CardDisplay = ({
           </div>
 
           {productsInCart.length === 0 ? (
-            <div className="px-3 sm:px-5 text-red-400">
+            <div className="px-3 sm:px-5 text-red-400 dark:text-red-300 ">
               <p>Cart is empty, add to cart your favorite product</p>
             </div>
           ) : (
             productsInCart.map((product) => (
-              <div key={product.id} className="px-4 border-b border-secondary">
+              <div
+                key={product.id}
+                className="px-4 border-b border-secondary dark:border-secondary/15 pb-2 last:border-0"
+              >
                 <div className="w-full flex items-center">
                   <div className="w-16 h-16">
                     <img
@@ -80,7 +85,7 @@ const CardDisplay = ({
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-light text-pretty">
+                    <h3 className="text-base text-text dark:text-bg font-light text-pretty">
                       {product.title}
                     </h3>
                     <p className=" text-primary font-medium">
@@ -99,7 +104,7 @@ const CardDisplay = ({
                       strokeWidth="1"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="lucide lucide-trash2-icon lucide-trash-2 stroke-red-300 hover:stroke-red-400 cursor-pointer"
+                      className="lucide lucide-trash2-icon lucide-trash-2 stroke-red-300 dark:stroke-red-100 hover:stroke-red-400 cursor-pointer"
                       onClick={() => {
                         console.log(product.id);
                         removeFromCartDisplay(product.id);
@@ -117,22 +122,22 @@ const CardDisplay = ({
             ))
           )}
 
-          <div className="flex flex-col bg-tertiary w-full h-fit p-6 mt-auto gap-3">
-            <div className="flex justify-between flex-wrap">
+          <div className="flex flex-col bg-tertiary dark:bg-secondary w-full h-fit p-6 mt-auto gap-3">
+            <div className="flex justify-between flex-wrap text-text">
               <h2 className="font-light">Subtotal:</h2>
               <p>
                 {subtotal.toFixed(2)}
                 <span className="text-sm font-light"> SEK</span>
               </p>
             </div>
-            <div className="flex justify-between opacity-60">
+            <div className="flex justify-between opacity-60 text-text">
               <h2 className="font-light ">Discount:</h2>{' '}
               <p>
                 {discount.toFixed(2)}
                 <span className="text-sm font-light"> SEK</span>
               </p>
             </div>
-            <div className="flex justify-between font-medium text-base sm:text-base">
+            <div className="flex justify-between font-medium text-base sm:text-base text-text">
               <h2 className="">Total:</h2>{' '}
               <p>
                 {total.toFixed(2)}{' '}

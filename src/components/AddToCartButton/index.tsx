@@ -5,8 +5,13 @@ import Alert from '../Alert';
 type AddToCartProps = {
   productAdd: ProductType;
   addtoCartButton: (productAdd: ProductType) => void;
+  isDarkAddToCart?: boolean;
 };
-const AddToCartButton = ({ productAdd, addtoCartButton }: AddToCartProps) => {
+const AddToCartButton = ({
+  productAdd,
+  addtoCartButton,
+  isDarkAddToCart,
+}: AddToCartProps) => {
   const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
 
   const onCancelAlert = () => {
@@ -22,7 +27,7 @@ const AddToCartButton = ({ productAdd, addtoCartButton }: AddToCartProps) => {
     <>
       <button
         onClick={() => setIsAlertOpen(true)}
-        className="px-5 py-1.5 font-light text-bg dark:text-text bg-tertiary hover:bg-secondary"
+        className="px-5 py-1.5 font-light text-text bg-tertiary hover:bg-secondary"
       >
         Add to cart
       </button>
@@ -31,6 +36,7 @@ const AddToCartButton = ({ productAdd, addtoCartButton }: AddToCartProps) => {
         isAlertOpen={isAlertOpen}
         onCancel={onCancelAlert}
         onConfirm={onConfirmAlert}
+        isDarkAlert={isDarkAddToCart}
       />
     </>
   );

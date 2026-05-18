@@ -16,6 +16,7 @@ type ModalProductProps = {
   setIsOpenModel: (value: boolean) => void;
   product: ProductType;
   addtoCartButtonModal: (product: ProductType) => void;
+  isDarkModal: boolean;
 };
 
 const ModalProduct = ({
@@ -23,6 +24,7 @@ const ModalProduct = ({
   setIsOpenModel,
   product,
   addtoCartButtonModal,
+  isDarkModal,
 }: ModalProductProps) => {
   const IMAGE_ARRAY_LEN: number = product.images.length - 1;
   const isImages: boolean = IMAGE_ARRAY_LEN !== 0;
@@ -41,19 +43,25 @@ const ModalProduct = ({
       : currentIndex - 1;
     setCurrentIndex(previousImage);
   };
+  console.log(isDarkModal);
   return (
     <Dialog
       open={isPressedModal}
       onClose={() => setIsOpenModel(false)}
-      className="relative z-10"
+      className={`relative z-10`}
     >
       <DialogBackdrop className="fixed inset-0 bg-gray-500/90" />
 
-      <div className="flex fixed items-center justify-center p-4 inset-0 z-10">
-        <DialogPanel className="relative flex flex-col w-full max-w-3xl max-h-[90vh] overflow-hidden bg-bg">
+      <div
+        className={`flex fixed items-center justify-center p-4 inset-0 z-10`}
+      >
+        <DialogPanel
+          className={`relative flex flex-col w-full max-w-3xl 
+          max-h-[90vh] overflow-hidden bg-bg dark:bg-text ${isDarkModal ? 'dark' : ''}`}
+        >
           <DialogTitle
             as="h3"
-            className="px-2 pt-2.5 font-light text-xl md:text-2xl text-center"
+            className="px-2 pt-2.5 font-light text-xl md:text-2xl text-center text-text dark:text-bg"
           >
             {product.title}-{product.brand || 'No specific brand'}
           </DialogTitle>
@@ -109,25 +117,31 @@ const ModalProduct = ({
                   </>
                 )}
               </div>
-              <p className="text-sm md:text-lg font-extralight text-primary leading-relaxed mb-3">
+              <p className="text-sm md:text-lg font-extralight text-primary dark:text-bg leading-relaxed mb-3">
                 {product.availabilityStatus}
               </p>
               <AddToCartButton
                 productAdd={product}
                 addtoCartButton={addtoCartButtonModal}
+                isDarkAddToCart={isDarkModal}
               />
-              <p className="text-sm md:text-lg font-light text-text leading-relaxed my-3 text-pretty">
+              <p className="text-sm md:text-lg font-light text-text dark:text-bg leading-relaxed my-3 text-pretty">
                 {product.description}
               </p>
-              <p className="text-lg md:text-xl font-semibold text-text leading-relaxed mb-3">
+              <p className="text-lg md:text-xl font-semibold text-text dark:text-secondary leading-relaxed mb-3">
                 {product.price}
                 <span className="text-sm md:text-lg"> SEK</span>
               </p>
-              <RatingCard reviewRating={product.reviews} />
+              <RatingCard
+                reviewRating={product.reviews}
+                isDarkRating={isDarkModal}
+              />
             </div>
           </div>
 
-          <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 ">
+          <div
+            className={`px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-bg dark:bg-text text-text dark:text-bg ${isDarkModal ? 'dark' : ''}`}
+          >
             <button
               type="button"
               data-autofocus

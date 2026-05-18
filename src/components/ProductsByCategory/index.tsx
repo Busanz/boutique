@@ -5,11 +5,13 @@ import ProductCard from '../ProductCard';
 type CategoryProps = {
   selectedCategory: string | null;
   addtoCartCategory: (product: ProductType) => void;
+  isDarkCategory: boolean;
 };
 
 const ProductByCategoy = ({
   selectedCategory = 'beauty',
   addtoCartCategory,
+  isDarkCategory,
 }: CategoryProps) => {
   const [productsByCategory, setProductByCategory] = useState<ProductType[]>(
     [],
@@ -37,6 +39,7 @@ const ProductByCategoy = ({
           key={product.id}
           productCard={product}
           addtoCartProductCard={addtoCartCategory}
+          isDarkProductCard={isDarkCategory}
         />
       ))}
     </section>

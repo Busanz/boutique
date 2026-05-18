@@ -6,20 +6,23 @@ import AddToCartButton from '../AddToCartButton';
 type ProductCardProps = {
   productCard: ProductType;
   addtoCartProductCard: (product: ProductType) => void;
+  isDarkProductCard: boolean;
 };
 
 const ProductCard = ({
   productCard,
   addtoCartProductCard,
+  isDarkProductCard,
 }: ProductCardProps) => {
   const [isOpenModel, setIsOpenModel] = useState<boolean>(false);
   const handleClick = () => {
     setIsOpenModel(!isOpenModel);
   };
+  console.log(isDarkProductCard);
   return (
     <article
       key={productCard.id}
-      className="flex flex-col w-fit max-w-96 h-full bg-tertiary/10 border border-secondary dark:border-bg p-4"
+      className={`flex flex-col w-fit max-w-96 h-full bg-tertiary/10 border dark:border-0 border-secondary dark:border-bg p-4 ${isDarkProductCard ? 'dark' : ''}`}
     >
       <img
         src={productCard.images[0] || 'fallback_productImage.png'}
@@ -46,7 +49,7 @@ const ProductCard = ({
               strokeWidth="1.25"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-expand-icon lucide-expand text-bg dark:text-text"
+              className="lucide lucide-expand-icon lucide-expand text-text"
             >
               <path d="m15 15 6 6" />
               <path d="m15 9 6-6" />
@@ -71,6 +74,7 @@ const ProductCard = ({
           setIsOpenModel={handleClick}
           product={productCard}
           addtoCartButtonModal={addtoCartProductCard}
+          isDarkModal={isDarkProductCard}
         />
       )}
     </article>

@@ -49,7 +49,7 @@ const Home = () => {
   return (
     <main
       className={`relative flex flex-col justify-center w-full px-3 sm:px-12 md:px-14 
-        lg:px-24 py-2 bg-bg dark:bg-text text-text dark:text-bg ${isDark ? 'dark' : ''}`}
+        lg:px-24 pt-2 pb-20 bg-bg dark:bg-text text-text dark:text-bg ${isDark ? 'dark' : ''}`}
     >
       <Navbar
         onClickNavbar={handleClickLogo}
@@ -57,6 +57,7 @@ const Home = () => {
         cartProductsNavbar={cartProducts}
         removeFromCartNavbar={removeFromCart}
         onSetThemeNavbar={handleTheme}
+        isDarkNavbar={isDark}
       />
       <section
         className="flex w-fit justify-center p-1 mx-auto mb-3 cursor-pointer"
@@ -89,11 +90,11 @@ const Home = () => {
       </section>
 
       {isDrawerOpen && (
-        <div className="absolute flex flex-wrap w-full max-w-6xl justify-center pt-2 pb-4 px-4 gap-4 top-32 left-1/2 -translate-x-1/2 bg-tertiary ">
+        <div className="absolute flex flex-wrap w-full max-w-6xl justify-center pt-2 pb-4 px-4 gap-4 top-32 left-1/2 -translate-x-1/2 bg-tertiary dark:bg-text">
           {categories.map((item) => (
             <p
               key={item.slug}
-              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer text-bg dark:text-text bg-bg hover:bg-gray-100 transition-colors"
+              className="w-36 md:w-48 text-center text-sm md:text-[15px] px-2 md:px-4 py-2 cursor-pointer text-text bg-bg hover:bg-gray-100 transition-colors"
               onClick={() => handleCategorySelect(item.name)}
             >
               {item.name}
@@ -106,9 +107,12 @@ const Home = () => {
         <ProductByCategory
           selectedCategory={selectedCategory}
           addtoCartCategory={addToCart}
+          isDarkCategory={isDark}
         />
       )}
-      {!selectedCategory && <RandomProducts addtoCartRandom={addToCart} />}
+      {!selectedCategory && (
+        <RandomProducts addtoCartRandom={addToCart} isDarkRandom={isDark} />
+      )}
     </main>
   );
 };

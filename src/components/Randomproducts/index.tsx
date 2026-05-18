@@ -8,9 +8,10 @@ type APIDataType = {
 
 type RandomProps = {
   addtoCartRandom: (product: ProductType) => void;
+  isDarkRandom: boolean;
 };
 
-const Randomproducts = ({ addtoCartRandom }: RandomProps) => {
+const Randomproducts = ({ addtoCartRandom, isDarkRandom }: RandomProps) => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
   const generateRandomNumbers = (): number[] => {
@@ -59,6 +60,7 @@ const Randomproducts = ({ addtoCartRandom }: RandomProps) => {
           key={product.id}
           productCard={product}
           addtoCartProductCard={addtoCartRandom}
+          isDarkProductCard={isDarkRandom}
         />
       ))}
     </section>

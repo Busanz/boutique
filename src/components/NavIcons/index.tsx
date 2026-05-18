@@ -7,6 +7,7 @@ type NavIconsType = {
   cartProductsNavIcons: ProductType[];
   removeFromCartNavIcons: (id: number) => void;
   onSetThemeNavIcons: (theme: boolean) => void;
+  isDarkNavIcons: boolean;
 };
 
 const NavIcons = ({
@@ -14,6 +15,7 @@ const NavIcons = ({
   cartProductsNavIcons,
   removeFromCartNavIcons,
   onSetThemeNavIcons,
+  isDarkNavIcons,
 }: NavIconsType) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -70,6 +72,7 @@ const NavIcons = ({
         onCloseCart={onCloseCartDisplay}
         productsInCart={cartProductsNavIcons}
         removeFromCartDisplay={removeFromCartNavIcons}
+        isDarkCartDisplay={isDarkNavIcons}
       />
     </div>
   );
