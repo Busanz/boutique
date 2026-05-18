@@ -43,7 +43,6 @@ const ModalProduct = ({
       : currentIndex - 1;
     setCurrentIndex(previousImage);
   };
-  console.log(isDarkModal);
   return (
     <Dialog
       open={isPressedModal}

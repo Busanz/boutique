@@ -18,7 +18,7 @@ const ProductCard = ({
   const handleClick = () => {
     setIsOpenModel(!isOpenModel);
   };
-  console.log(isDarkProductCard);
+
   return (
     <article
       key={productCard.id}

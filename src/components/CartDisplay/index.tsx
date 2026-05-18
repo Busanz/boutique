@@ -105,10 +105,7 @@ const CardDisplay = ({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className="lucide lucide-trash2-icon lucide-trash-2 stroke-red-300 dark:stroke-red-100 hover:stroke-red-400 cursor-pointer"
-                      onClick={() => {
-                        console.log(product.id);
-                        removeFromCartDisplay(product.id);
-                      }}
+                      onClick={() => removeFromCartDisplay(product.id)}
                     >
                       <path d="M10 11v6" />
                       <path d="M14 11v6" />

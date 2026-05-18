@@ -26,7 +26,7 @@ const NavIcons = ({
   const onCloseCartDisplay = () => {
     setIsClicked(false);
   };
-  // console.log(cartProductsNavIcons);
+
   return (
     <div className="flex space-x-2 md:space-x-3">
       <div className="relative" onClick={handleClick}>
